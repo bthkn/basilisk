@@ -1,4 +1,4 @@
-package main
+package scryfall
 
 import (
 	"encoding/json"
@@ -8,6 +8,8 @@ import (
 	"net/url"
 	"strings"
 )
+
+const baseURL = "https://api.scryfall.com"
 
 type ScryfallResponse struct {
 	Object  string `json:"object"`
@@ -36,7 +38,7 @@ type ImageURIs struct {
 }
 
 func GetCard(set string, num string, lang string) (Card, error) {
-	url := "https://api.scryfall.com/cards/" + set + "/" + num + "/" + lang
+	url := baseURL + "/cards/" + set + "/" + num + "/" + lang
 
 	data, err := sendAPIRequest(url)
 	if err != nil {
@@ -54,7 +56,7 @@ func GetCard(set string, num string, lang string) (Card, error) {
 
 func SearchCard(query string, lang string) (CardList, error) {
 	searchQuery := buildSearchQuery(query, lang)
-	url := "https://api.scryfall.com/cards/search?q=" + searchQuery
+	url := baseURL + "/cards/search?q=" + searchQuery
 	data, err := sendAPIRequest(url)
 	if err != nil {
 		return CardList{}, err
@@ -69,8 +71,13 @@ func SearchCard(query string, lang string) (CardList, error) {
 	return cardList, nil
 }
 
-func sendAPIRequest(url string) ([]byte, error) {
-	resp, err := http.Get(url)
+func sendAPIRequest(reqURL string) ([]byte, error) {
+	_, err := url.Parse(reqURL)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := http.Get(reqURL)
 	if err != nil {
 		return nil, err
 	}
