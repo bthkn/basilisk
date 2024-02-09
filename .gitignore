@@ -1,3 +1,11 @@
+# Configuration
+*.pkl
+!config/AppConfig.pkl
+!config/example/config.pkl
+
+# Build
+dist/
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
