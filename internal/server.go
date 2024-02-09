@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/bthkn/basilisk/gen/appconfig"
+	"github.com/bthkn/basilisk/internal/appconfig"
 )
 
 type server struct {

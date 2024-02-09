@@ -1,4 +1,4 @@
-@go.Package { name = "github.com/bthkn/basilisk/gen/appconfig" }
+@go.Package { name = "github.com/bthkn/basilisk/internal/appconfig" }
 module org.pkl.golang.example.AppConfig
 
 import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.5.0#/go.pkl"
