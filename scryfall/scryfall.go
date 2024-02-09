@@ -1,4 +1,4 @@
-package main
+package scryfall
 
 import (
 	"encoding/json"
