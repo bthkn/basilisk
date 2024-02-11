@@ -12,7 +12,7 @@ type AppConfig struct {
 	Host string `pkl:"host"`
 
 	// The application port to listen on
-	Port uint16 `pkl:"port"`
+	Port int `pkl:"port"`
 }
 
 // LoadFromPath loads the pkl module at the given path and evaluates it into a AppConfig

@@ -18,11 +18,12 @@ type ScryfallResponse struct {
 }
 
 type Card struct {
-	ID       string    `json:"id"`
-	OracleID string    `json:"oracle_id"`
-	Name     string    `json:"name"`
-	Lang     string    `json:"lang"`
-	Images   ImageURIs `json:"image_uris"`
+	ID          string    `json:"id"`
+	OracleID    string    `json:"oracle_id"`
+	Name        string    `json:"name"`
+	Lang        string    `json:"lang"`
+	ImageStatus string    `json:"image_status"`
+	Images      ImageURIs `json:"image_uris"`
 }
 
 type CardList struct {
@@ -56,7 +57,7 @@ func GetCard(set string, num string, lang string) (Card, error) {
 
 func SearchCard(query string, lang string) (CardList, error) {
 	searchQuery := buildSearchQuery(query, lang)
-	url := baseURL + "/cards/search?q=" + searchQuery
+	url := baseURL + "/cards/search?q=" + searchQuery + "&order=released"
 	data, err := sendAPIRequest(url)
 	if err != nil {
 		return CardList{}, err

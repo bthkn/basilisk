@@ -3,7 +3,7 @@ module org.pkl.golang.example.AppConfig
 
 import "package://pkg.pkl-lang.org/pkl-go/pkl.golang@0.5.0#/go.pkl"
 
-typealias Port = UInt16(this > 0)
+typealias Port = Int(this > 0)
 
 /// The host to listen on
 host: String = "0.0.0.0"
