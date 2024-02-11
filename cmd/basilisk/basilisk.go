@@ -1,30 +1,18 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"os"
+	"context"
 
-	"github.com/bthkn/basilisk/scryfall"
+	"github.com/bthkn/basilisk/internal"
+	"github.com/bthkn/basilisk/internal/appconfig"
 )
 
 func main() {
-	args := os.Args[1:]
-	fmt.Println(args)
-
-	card, err := scryfall.GetCard("afr", "1", "en")
+	cfg, err := appconfig.LoadFromPath(context.Background(), "config/dev/config.pkl")
 	if err != nil {
-		// handle error
-		log.Fatal(err)
+		panic(err)
 	}
-
-	fmt.Println(card.Name)
-
-	cards, err := scryfall.SearchCard("Vizier of Tumbling Sands", "en")
-	if err != nil {
-		// handle error
-		log.Fatal(err)
+	if err = internal.NewServer(cfg).Run(); err != nil {
+		panic(err)
 	}
-
-	fmt.Println(cards.Data[0].Name)
 }
