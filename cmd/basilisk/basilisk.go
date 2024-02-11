@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	cfg, err := appconfig.LoadFromPath(context.Background(), "config/dev/config.pkl")
+	cfg, err := appconfig.LoadFromPath(context.Background(), "config/AppConfig.pkl")
 	if err != nil {
 		panic(err)
 	}
